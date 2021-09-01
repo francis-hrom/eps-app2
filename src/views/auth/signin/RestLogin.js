@@ -17,8 +17,8 @@ const RestLogin = ({ className, ...rest }) => {
         <React.Fragment>
             <Formik
                 initialValues={{
-                    email: '',
-                    password: '',
+                    email: 'ada@lovelace.test',
+                    password: 'FIRSTprogrammer!',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
@@ -28,16 +28,16 @@ const RestLogin = ({ className, ...rest }) => {
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         axios
-                            .post(API_SERVER + 'users/login', {
+                            .post(API_SERVER + '/users/login', {
                                 password: values.password,
                                 email: values.email
                             })
                             .then(function (response) {
-                                if (response.data.success) {
+                                if (response.data.accessToken) {
                                     console.log(response.data);
                                     dispatcher({
                                         type: ACCOUNT_INITIALIZE,
-                                        payload: { isLoggedIn: true, user: response.data.user, token: response.data.token }
+                                        payload: { isLoggedIn: true, user: response.data.user, token: response.data.accessToken }
                                     });
                                     if (scriptedRef.current) {
                                         setStatus({ success: true });
@@ -102,12 +102,12 @@ const RestLogin = ({ className, ...rest }) => {
                             </Col>
                         )}
 
-                        <div className="custom-control custom-checkbox  text-left mb-4 mt-2">
+                        {/* <div className="custom-control custom-checkbox  text-left mb-4 mt-2">
                             <input type="checkbox" className="custom-control-input" id="customCheck1" />
                             <label className="custom-control-label" htmlFor="customCheck1">
                                 Save credentials.
                             </label>
-                        </div>
+                        </div> */}
 
                         <Row>
                             <Col mt={2}>

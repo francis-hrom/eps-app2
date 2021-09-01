@@ -28,12 +28,12 @@ const Signin1 = () => {
 
                             <RestLogin />
 
-                            <p className="mb-0 text-muted">
+                            {/* <p className="mb-0 text-muted">
                                 Don’t have an account?{' '}
                                 <NavLink to="/auth/signup" className="f-w-400">
                                     Sign UP
                                 </NavLink>
-                            </p>
+                            </p> */}
                         </Card.Body>
                     </Card>
                 </div>

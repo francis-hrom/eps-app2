@@ -30,12 +30,12 @@ const Signin1 = () => {
                                     Reset
                                 </NavLink>
                             </p>
-                            <p className="mb-0 text-muted">
+                            {/* <p className="mb-0 text-muted">
                                 Don’t have an account?
                                 <NavLink to="/auth/signup-2" className="f-w-400">
                                     Signup
                                 </NavLink>
-                            </p>
+                            </p> */}
                         </Card.Body>
                     </Card>
                 </div>

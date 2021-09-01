@@ -1,7 +1,9 @@
+const { REACT_APP_API } = process.env;
+
 export const BASENAME = ''; // don't add '/' at end off BASENAME
 export const BASE_URL = '/main/home';
 export const BASE_TITLE = ' | EPS ';
-export const API_SERVER = 'http://localhost:5000/api/';
+export const API_SERVER = REACT_APP_API;
 
 export const CONFIG = {
     layout: 'vertical', // disable on free version
