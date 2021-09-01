@@ -127,6 +127,40 @@ const routes = [
                 component: lazy(() => import('./views/extra/SamplePage'))
             },
             {
+                exact: true,
+                path: '/test-page',
+                component: lazy(() => import('./views/testPage/TestPage'))
+            },
+            {
+                exact: true,
+                path: '/main/home',
+                component: lazy(() => import('./views/main/HomePage'))
+            },
+
+            {
+                exact: true,
+                path: '/data/targets',
+                component: lazy(() => import('./views/data/TargetsPage'))
+            },
+
+            {
+                exact: true,
+                path: '/data/rankings',
+                component: lazy(() => import('./views/data/RankingsPage'))
+            },
+
+            {
+                exact: true,
+                path: '/tools/find-selector',
+                component: lazy(() => import('./views/tools/FindSelectorPage'))
+            },
+
+            {
+                exact: true,
+                path: '/tools/get-rankings',
+                component: lazy(() => import('./views/tools/GetRankingsPage'))
+            },
+            {
                 path: '*',
                 exact: true,
                 component: () => <Redirect to={BASE_URL} />

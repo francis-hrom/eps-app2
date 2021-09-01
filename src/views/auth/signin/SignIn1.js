@@ -20,7 +20,7 @@ const Signin1 = () => {
                     </div>
                     <Card className="borderless text-center">
                         <Card.Body>
-                            <h4 className="mb-4">React Datta Able</h4>
+                            <h4 className="mb-4">EPS</h4>
 
                             <div className="mb-4">
                                 <i className="feather icon-unlock auth-icon" />
@@ -33,20 +33,6 @@ const Signin1 = () => {
                                 <NavLink to="/auth/signup" className="f-w-400">
                                     Sign UP
                                 </NavLink>
-                            </p>
-
-                            <br />
-
-                            <p className="mb-0 text-muted">
-                                &copy;{' '}
-                                <a target="_blank" href="https://codedthemes.com/" rel="noreferrer">
-                                    CodedThemes
-                                </a>
-                                -{' '}
-                                <a target="_blank" href="https://appseed.us" rel="noreferrer">
-                                    AppSeed
-                                </a>
-                                .
                             </p>
                         </Card.Body>
                     </Card>
