@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Row, Col, Card, Form, Button, Alert, Spinner } from 'react-bootstrap';
-import axios from 'axios';
-import { API_SERVER } from '../../config/constant';
+import { Form, Row, Col, Image } from 'react-bootstrap';
+import { Button, CircularProgress } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+import SearchIcon from '@material-ui/icons/Search';
+import AssistantIcon from '@material-ui/icons/Assistant';
 
-const FindSelectorPage = () => {
-    const [message, setMessage] = useState('');
+import getSelector from '../../logic/getSelector';
+import GetRankingsComponent from './GetRankingsComponent';
+import explainer from '../../assets/images/explainer.jpg';
+
+const FindSelector = () => {
+    const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const [url, setUrl] = useState('');
     const [textArea, setTextArea] = useState('');
@@ -15,18 +21,17 @@ const FindSelectorPage = () => {
     };
 
     const handleSubmit = async () => {
-        const textArr = textArea.replace(/\r\n/g, '\n').split('\n');
+        const textArray = textArea.replace(/\r\n/g, '\n').split('\n');
         setLoading(true);
+        setErrorMessage('');
+        setSelector('');
 
         try {
-            const res = await axios.post(API_SERVER + 'scrape/find-selector', {
-                url,
-                textArr
-            });
+            const res = await getSelector(url, textArray);
             setSelector(res.data);
         } catch (error) {
             console.error(error.response.data);
-            setMessage(JSON.stringify(error.response.data));
+            setErrorMessage(JSON.stringify(error.response.data));
         } finally {
             setLoading(false);
         }
@@ -34,53 +39,71 @@ const FindSelectorPage = () => {
 
     const handleSetDefault = () => {
         setUrl('https://webscraper.io/test-sites/e-commerce/allinone/phones/touch');
-        // eslint-disable-next-line
         setTextArea('Nokia 123' + '\n' + 'LG Optimus' + '\n' + 'Samsung Galaxy');
     };
+
     return (
-        <React.Fragment>
+        <div className="FindSelector" data-testid="FindSelector">
             <Row>
                 <Col>
-                    <Card>
-                        <Card.Header>
-                            <Card.Title as="h5">Find Selector</Card.Title>
-                        </Card.Header>
-                        <Card.Body>
-                            <p>
-                                Provide url link to a website and list of relevant items. It will search through the website and return the
-                                most statistically relevant selector which can be then used in Get Rankings.
-                            </p>
+                    <p>
+                        Provide url link to a website and list of relevant items. It will search through the website and return the most
+                        statistically relevant selector which can be then used for Get Rankings.
+                    </p>
 
-                            <Form>
-                                <Form.Group controlId="url">
-                                    <Form.Label>Url</Form.Label>
-                                    <Form.Control type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
-                                </Form.Group>
-                                <Form.Group controlId="items">
-                                    <Form.Label>Relevant items </Form.Label>
-                                    <Form.Control as="textarea" rows={5} value={textArea} onChange={(e) => setTextArea(e.target.value)} />
-                                    <Form.Text className="text-muted">Separate by new line. Case insensitive.</Form.Text>
-                                </Form.Group>
-                                {!loading && (
-                                    <Button type="submit" disabled={!validateForm()} onClick={handleSubmit}>
-                                        Find Selector
-                                    </Button>
-                                )}
-                                {!loading && (
-                                    <Button variant="secondary" size="sm" onClick={handleSetDefault}>
-                                        Set default test data
-                                    </Button>
-                                )}
-                                {loading && <Spinner animation="border" role="status"></Spinner>}
-                                {message && <Alert variant="danger">{message}</Alert>}
-                            </Form>
-                            {selector && <Alert variant="success">Selector: {selector}</Alert>}
-                        </Card.Body>
-                    </Card>
+                    <Form>
+                        <Form.Group controlId="url">
+                            <Form.Label>Url</Form.Label>
+                            <Form.Control type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group controlId="items">
+                            <Form.Label>Relevant items </Form.Label>
+                            <Form.Control as="textarea" rows={3} value={textArea} onChange={(e) => setTextArea(e.target.value)} />
+                            <Form.Text className="text-muted">Separate by new line. Case insensitive.</Form.Text>
+                        </Form.Group>
+                        {!loading && (
+                            <>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    disabled={!validateForm()}
+                                    onClick={handleSubmit}
+                                    startIcon={<SearchIcon />}
+                                >
+                                    Find Selector
+                                </Button>
+                                <Button variant="contained" onClick={handleSetDefault} startIcon={<AssistantIcon />}>
+                                    Set test data
+                                </Button>
+                            </>
+                        )}
+                    </Form>
+                    {loading && <CircularProgress />}
+                    {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+
+                    {selector && (
+                        <div>
+                            <Alert severity="success">
+                                <p>
+                                    <strong>
+                                        Selector found! <br />
+                                    </strong>
+                                    Url: <a href={url}>{url}</a> <br />
+                                    Selector: {selector}
+                                </p>
+                            </Alert>
+
+                            <h4>Get Rankings:</h4>
+                            <GetRankingsComponent url={url} selector={selector} />
+                        </div>
+                    )}
+                </Col>
+                <Col lg={6}>
+                    <Image src={explainer} alt="explainer" fluid />
                 </Col>
             </Row>
-        </React.Fragment>
+        </div>
     );
 };
 
-export default FindSelectorPage;
+export default FindSelector;
