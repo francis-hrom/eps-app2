@@ -1,23 +1,24 @@
 import React from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Image } from 'react-bootstrap';
 
 import RankingsBarDiscreteChart from './RankingsBarDiscreteChart';
 import RankingsPieDonutChart from './RankingsPieDonutChart';
+import explainer from '../../assets/images/explainer.jpg';
 //import Card from '../../components/Card/MainCard';
 
 const HomePage = () => {
     return (
         <React.Fragment>
             <Row>
-                <Col md={9}>
+                <Col>
                     <Card>
                         <Card.Header>
                             <Card.Title as="h5">Welcome to EPS!</Card.Title>
                         </Card.Header>
                         <Card.Body>
                             <p>
-                                EPS (Element Position Scanner) can be used to scan order of positions (rankings) of elements (items) from
-                                any website.
+                                EPS (Element Position Scanner) gives possibility to scan order of positions (rankings) of elements (items)
+                                from any website.
                             </p>
                             <p>
                                 Main inputs are url link to the target web page and CSS selector which targets the relevant items on that
@@ -28,17 +29,20 @@ const HomePage = () => {
                                 relevant items (text). Then the tool visits the website and return the most statistically relevant selector.
                             </p>
                             <p> Example use case scenarios:</p>
-                            <p>
-                                Sales team is managing several partnerships. Part of the partnership deal is specification on what position
-                                (rank) on the partners website will be the company's product/service listed. To check manually 100+ partner
-                                websites is highly inefficient and possibly error prone. With usage of EPS the sales team can retrieve this
-                                data easily and in addition get data about position of product/services of their competitors.
-                            </p>
-                            <p>
-                                Another example would be a marketing / brand ambassador team of a major smartphone brand which is in charge
-                                of brand awareness. They need to monitor positions (ranks) of their smartphone brands as well their
-                                competitors on the major e-commerce websites.
-                            </p>
+                            <ul>
+                                <li>
+                                    Sales team is managing several partnerships. Part of the partnership deal is specification on what
+                                    position (rank) on the partners website will be the company's product/service listed. To check manually
+                                    100+ partner websites is highly inefficient and possibly error prone. With usage of EPS the sales team
+                                    can retrieve this data easily and in addition get data about position of product/services of their
+                                    competitors.
+                                </li>
+                                <li>
+                                    Marketing / brand ambassador team of a major smartphone brand which is in charge of brand awareness.
+                                    They need to monitor positions (ranks) of their smartphone brands as well their competitors on the major
+                                    e-commerce websites.
+                                </li>
+                            </ul>
                             <p>
                                 For illustration purposes data about smartphone popularity (rankings) are already preloaded from the major
                                 e-commerce websites (targets).
@@ -46,31 +50,42 @@ const HomePage = () => {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col>
-                    <Card>
-                        <Card.Body className="border-bottom">
-                            <div className="row d-flex align-items-center">
-                                <div className="col-auto">
-                                    <i className="feather icon-zap f-30 text-c-green" />
-                                </div>
-                                <div className="col">
-                                    <h3 className="f-w-300">126</h3>
-                                    <span className="d-block text-uppercase">total targets monitored</span>
-                                </div>
-                            </div>
-                        </Card.Body>
-                        <Card.Body>
-                            <div className="row d-flex align-items-center">
-                                <div className="col-auto">
-                                    <i className="feather icon-map-pin f-30 text-c-blue" />
-                                </div>
-                                <div className="col">
-                                    <h3 className="f-w-300">1721</h3>
-                                    <span className="d-block text-uppercase">total rankings collected on last attempt</span>
-                                </div>
-                            </div>
-                        </Card.Body>
-                    </Card>
+                <Col lg={6}>
+                    <Row>
+                        <Image src={explainer} alt="explainer" fluid />
+                    </Row>
+                    {/* <Row>
+                        <Col>
+                            <Card>
+                                <Card.Body className="border-bottom">
+                                    <div className="row d-flex align-items-center">
+                                        <div className="col-auto">
+                                            <i className="feather icon-zap f-30 text-c-green" />
+                                        </div>
+                                        <div className="col">
+                                            <h3 className="f-w-300">126</h3>
+                                            <span className="d-block text-uppercase">total targets monitored</span>
+                                        </div>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card>
+                                <Card.Body>
+                                    <div className="row d-flex align-items-center">
+                                        <div className="col-auto">
+                                            <i className="feather icon-map-pin f-30 text-c-blue" />
+                                        </div>
+                                        <div className="col">
+                                            <h3 className="f-w-300">1721</h3>
+                                            <span className="d-block text-uppercase">total rankings collected on last attempt</span>
+                                        </div>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row> */}
                 </Col>
             </Row>
             <Row>
