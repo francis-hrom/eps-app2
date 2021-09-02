@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import validUrl from 'valid-url';
 import Form from 'react-bootstrap/Form';
-
 import { Button, CircularProgress } from '@material-ui/core';
 import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
 import AssistantIcon from '@material-ui/icons/Assistant';
@@ -19,20 +19,28 @@ const GetRankingsComponent = (props: any, state: any): JSX.Element => {
         return url.length > 0 && selector.length > 0;
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = () => {
         setLoading(true);
         setErrorMessage('');
         setItems([]);
 
-        try {
-            const res = await getRankings(url, selector);
-            setItems(res.data);
-        } catch (error) {
-            console.error(error.response.data);
-            setErrorMessage(JSON.stringify(error.response.data));
-        } finally {
+        if (!url || !validUrl.isUri(url)) {
+            setErrorMessage('Please enter valid url.');
             setLoading(false);
+            return;
         }
+
+        (async () => {
+            try {
+                const res = await getRankings(url, selector);
+                setItems(res.data);
+            } catch (error) {
+                console.error(error.response.data);
+                setErrorMessage(JSON.stringify(error.response.data));
+            } finally {
+                setLoading(false);
+            }
+        })();
     };
 
     const handleSetDefault = () => {
