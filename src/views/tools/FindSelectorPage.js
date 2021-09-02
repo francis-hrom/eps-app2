@@ -38,8 +38,11 @@ const FindSelector = () => {
                 const res = await getSelector(url, textArray);
                 setSelector(res.data);
             } catch (error) {
-                console.error(error.response.data);
-                setErrorMessage(JSON.stringify(error.response.data));
+                if (!error.response) {
+                    setErrorMessage('Server error. Please contact administrator.');
+                } else {
+                    setErrorMessage(error.response.data);
+                }
             } finally {
                 setLoading(false);
             }
