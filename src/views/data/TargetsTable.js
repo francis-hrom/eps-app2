@@ -141,7 +141,6 @@ const TargetsTable = () => {
             (async () => {
                 try {
                     const response = await resetTargets();
-                    console.log(response);
                     setData(response.data);
                     alert(
                         'Data has been reset to defaults successfully! This reset functionality is here just for the testing purposes (in production it would be removed, in order to prevent unwanted data deletion by an user).'
@@ -162,7 +161,7 @@ const TargetsTable = () => {
     return (
         <div className="TargetsTable" data-testid="TargetsTable">
             <MaterialTable
-                title="Targets"
+                title="Targets Table"
                 data={data}
                 columns={columns}
                 options={{
