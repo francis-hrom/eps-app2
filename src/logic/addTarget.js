@@ -9,7 +9,5 @@ export default function addTarget(url, selector) {
     if (!validUrl.isUri(url)) throw new TypeError(`${url} is not a valid URL.`);
     if (typeof selector !== 'string') throw new TypeError(`${selector} is not a string`);
 
-    return (async () => {
-        axios.post(`${REACT_APP_API}/targets`, { url, selector }, { headers: authHeader() });
-    })();
+    return axios.post(`${REACT_APP_API}/targets`, { url, selector }, { headers: authHeader() });
 }
