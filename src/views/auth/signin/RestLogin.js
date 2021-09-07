@@ -8,6 +8,7 @@ import axios from 'axios';
 import useScriptRef from '../../../hooks/useScriptRef';
 import { API_SERVER } from './../../../config/constant';
 import { ACCOUNT_INITIALIZE } from './../../../store/actions';
+import setDefaultAuthHeader from '../../../services/setDefaultAuthHeader';
 
 const RestLogin = ({ className, ...rest }) => {
     const dispatcher = useDispatch();
@@ -34,6 +35,8 @@ const RestLogin = ({ className, ...rest }) => {
                             })
                             .then(function (response) {
                                 if (response.data.accessToken) {
+                                    axios.defaults.headers.common['x-access-token'] = response.data.accessToken;
+
                                     console.log(response.data);
                                     dispatcher({
                                         type: ACCOUNT_INITIALIZE,

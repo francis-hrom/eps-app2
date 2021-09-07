@@ -6,7 +6,7 @@ import Alert from '@material-ui/lab/Alert';
 import SearchIcon from '@material-ui/icons/Search';
 import AssistantIcon from '@material-ui/icons/Assistant';
 
-import getSelector from '../../services/findSelector';
+import findSelector from '../../services/findSelector';
 import ScanRankingsComponent from './ScanRankingsComponent';
 import explainer from '../../assets/images/explainer.jpg';
 
@@ -35,7 +35,8 @@ const FindSelector = () => {
 
         (async () => {
             try {
-                const foundSelector = await getSelector(url, textArray);
+                const foundSelector = await findSelector(url, textArray);
+
                 setSelector(foundSelector);
             } catch (error) {
                 setErrorMessage(error.message);
@@ -47,7 +48,7 @@ const FindSelector = () => {
 
     const handleSetDefault = () => {
         setUrl('https://webscraper.io/test-sites/e-commerce/allinone/phones/touch');
-        setTextArea('Nokia 123' + '\n' + 'LG Optimus' + '\n' + 'Samsung Galaxy');
+        setTextArea('Nokia 123\nLG Optimus\nSamsung Galaxy');
     };
 
     return (
@@ -56,7 +57,7 @@ const FindSelector = () => {
                 <Col>
                     <p>
                         Provide url link to a website and list of relevant items. It will search through the website and return the most
-                        statistically relevant selector which can be then used for Get Rankings.
+                        statistically relevant selector which can be then used for Scan Rankings.
                     </p>
 
                     <Form>
@@ -101,7 +102,7 @@ const FindSelector = () => {
                                 </p>
                             </Alert>
 
-                            <h4>Get Rankings:</h4>
+                            <h4>Scan Rankings:</h4>
                             <ScanRankingsComponent url={url} selector={selector} />
                         </div>
                     )}

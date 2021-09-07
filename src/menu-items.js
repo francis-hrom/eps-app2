@@ -48,14 +48,14 @@ const menuItems = {
                     title: 'Find Selector',
                     type: 'item',
                     url: '/tools/find-selector',
-                    icon: 'feather icon-crosshair'
+                    icon: 'feather icon-search'
                 },
                 {
-                    id: 'get-rankings',
-                    title: 'Get Rankings',
+                    id: 'scan-rankings',
+                    title: 'Scan Rankings',
                     type: 'item',
-                    url: '/tools/get-rankings',
-                    icon: 'feather icon-box'
+                    url: '/tools/scan-rankings',
+                    icon: 'feather icon-crosshair'
                 }
             ]
         }

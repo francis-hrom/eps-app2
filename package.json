@@ -47,7 +47,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "test-inspect-brk": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
     },
     "eslintConfig": {
         "extends": [

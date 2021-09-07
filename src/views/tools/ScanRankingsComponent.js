@@ -72,7 +72,7 @@ const ScanRankingsComponent = (props) => {
                             onClick={handleSubmit}
                             startIcon={<LocationSearchingIcon />}
                         >
-                            Get Rankings
+                            Scan Rankings
                         </Button>
                         <Button variant="contained" onClick={handleSetDefault} startIcon={<AssistantIcon />}>
                             Set test data

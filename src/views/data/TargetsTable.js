@@ -32,6 +32,7 @@ const TargetsTable = () => {
         (async () => {
             try {
                 const targets = await getAllTargets();
+
                 setData(targets);
             } catch (error) {
                 setErrorMessages([error.message]);
@@ -42,9 +43,9 @@ const TargetsTable = () => {
     const handleRowAdd = (newData, resolve) => {
         setErrorMessages([]);
 
-        //validation
         const errorList = [];
         const { url, selector } = newData;
+
         if (!url || !validUrl.isUri(url)) {
             errorList.push('Please enter valid url.');
         }
@@ -54,51 +55,50 @@ const TargetsTable = () => {
 
         if (errorList.length > 0) {
             setErrorMessages(errorList);
-            resolve();
         } else {
             (async () => {
                 try {
-                    await addTarget(url, selector);
-                    const dataToAdd = [...data];
-                    dataToAdd.push(newData);
-                    setData(dataToAdd);
+                    const newTarget = await addTarget(url, selector);
+
+                    setData([...data, newTarget]);
                 } catch (error) {
-                    setErrorMessages(error.message);
-                } finally {
-                    resolve();
+                    setErrorMessages([error.message]);
                 }
             })();
         }
+
+        resolve();
     };
 
     const handleRowUpdate = (newData, oldData, resolve) => {
         setErrorMessages([]);
 
-        //validation
         const errorList = [];
         const { id, selector } = newData;
+
         if (!selector) {
             errorList.push('Please enter a valid selector.');
         }
 
         if (errorList.length > 0) {
             setErrorMessages(errorList);
-            resolve();
         } else {
             (async () => {
                 try {
                     await editTarget(id, selector);
+
                     const dataUpdate = [...data];
                     const index = oldData.tableData.id;
                     dataUpdate[index] = newData;
+
                     setData([...dataUpdate]);
                 } catch (error) {
                     setErrorMessages([error.message]);
-                } finally {
-                    resolve();
                 }
             })();
         }
+
+        resolve();
     };
 
     const handleRowDelete = async (oldData, resolve) => {
@@ -106,9 +106,11 @@ const TargetsTable = () => {
 
         try {
             await deleteTarget(oldData.id);
+
             const dataDelete = [...data];
             const index = oldData.tableData.id;
             dataDelete.splice(index, 1);
+
             setData([...dataDelete]);
         } catch (error) {
             setErrorMessages([error.message]);
@@ -129,7 +131,9 @@ const TargetsTable = () => {
             (async () => {
                 try {
                     const targets = await resetTargets();
+
                     setData(targets);
+
                     alert(
                         'Data has been reset to defaults successfully! This reset functionality is here just for the testing purposes (in production it would be removed, in order to prevent unwanted data deletion by an user).'
                     );

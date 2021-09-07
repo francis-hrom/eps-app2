@@ -12,6 +12,7 @@ const RankingsTable = () => {
         (async () => {
             try {
                 const rankings = await getAllRankings();
+
                 setRankings(rankings);
             } catch (error) {
                 setErrorMessage(error.message);
