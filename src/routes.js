@@ -158,7 +158,7 @@ const routes = [
             {
                 exact: true,
                 path: '/tools/get-rankings',
-                component: lazy(() => import('./views/tools/GetRankingsPage'))
+                component: lazy(() => import('./views/tools/ScanRankingsPage'))
             },
             {
                 path: '*',

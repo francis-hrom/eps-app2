@@ -21,7 +21,7 @@ const NavRight = () => {
     const [listOpen, setListOpen] = useState(false);
 
     const handleLogout = () => {
-        localStorage.removeItem('datta-account');
+        localStorage.removeItem('user-account');
         window.location.reload();
 
         // axios

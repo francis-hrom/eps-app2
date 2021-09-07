@@ -1,14 +1,14 @@
 import React from 'react';
-import GetRankingsComponent from './GetRankingsComponent';
+import ScanRankingsComponent from './ScanRankingsComponent';
 
 import { Row, Col, Image } from 'react-bootstrap';
 import explainer from '../../assets/images/explainer.jpg';
 
-const GetRankingsPage = () => (
-    <div className="GetRankingsPage" data-testid="GetRankingsPage">
+const ScanRankingsPage = () => (
+    <div className="ScanRankingsPage" data-testid="ScantRankingsPage">
         <Row>
             <Col>
-                <GetRankingsComponent />
+                <ScanRankingsComponent />
             </Col>
             <Col lg={6}>
                 <Image src={explainer} alt="explainer" fluid />
@@ -17,4 +17,4 @@ const GetRankingsPage = () => (
     </div>
 );
 
-export default GetRankingsPage;
+export default ScanRankingsPage;

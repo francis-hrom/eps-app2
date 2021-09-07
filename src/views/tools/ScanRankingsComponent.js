@@ -6,9 +6,9 @@ import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
 import AssistantIcon from '@material-ui/icons/Assistant';
 import Alert from '@material-ui/lab/Alert';
 
-import getRankings from '../../logic/getRankings';
+import scanRankings from '../../services/scanRankings';
 
-const GetRankingsComponent = (props: any, state: any): JSX.Element => {
+const ScanRankingsComponent = (props) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const [url, setUrl] = useState(props.url || '');
@@ -32,14 +32,10 @@ const GetRankingsComponent = (props: any, state: any): JSX.Element => {
 
         (async () => {
             try {
-                const res = await getRankings(url, selector);
-                setItems(res.data);
+                const rankingItems = await scanRankings(url, selector);
+                setItems(rankingItems);
             } catch (error) {
-                if (!error.response) {
-                    setErrorMessage('Server error. Please contact administrator.');
-                } else {
-                    setErrorMessage(error.response.data);
-                }
+                setErrorMessage(error.message);
             } finally {
                 setLoading(false);
             }
@@ -104,4 +100,4 @@ const GetRankingsComponent = (props: any, state: any): JSX.Element => {
     );
 };
 
-export default GetRankingsComponent;
+export default ScanRankingsComponent;

@@ -10,7 +10,7 @@ const reducers = combineReducers({
         {
             key: 'account',
             storage,
-            keyPrefix: 'datta-'
+            keyPrefix: 'user-'
         },
         accountReducer
     ),

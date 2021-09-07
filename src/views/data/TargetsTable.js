@@ -5,11 +5,11 @@ import Alert from '@material-ui/lab/Alert';
 import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
 import MaterialTable from 'material-table';
 
-import getAllTargets from '../../logic/getAllTargets';
-import addTarget from '../../logic/addTarget';
-import editTarget from '../../logic/editTarget';
-import deleteTarget from '../../logic/deleteTarget';
-import resetTargets from '../../logic/resetTargets';
+import getAllTargets from '../../services/targets/getAllTargets';
+import addTarget from '../../services/targets/addTarget';
+import editTarget from '../../services/targets/editTarget';
+import deleteTarget from '../../services/targets/deleteTarget';
+import resetTargets from '../../services/targets/resetTargets';
 
 const TargetsTable = () => {
     const [data, setData] = useState([]);
@@ -31,10 +31,10 @@ const TargetsTable = () => {
     useEffect(() => {
         (async () => {
             try {
-                const response = await getAllTargets();
-                setData(response.data);
-            } catch {
-                setErrorMessages(['Server error. Please contact administrator.']);
+                const targets = await getAllTargets();
+                setData(targets);
+            } catch (error) {
+                setErrorMessages([error.message]);
             }
         })();
     }, []);
@@ -63,11 +63,7 @@ const TargetsTable = () => {
                     dataToAdd.push(newData);
                     setData(dataToAdd);
                 } catch (error) {
-                    if (!error.response) {
-                        setErrorMessages(['Server error. Please contact administrator.']);
-                    } else {
-                        setErrorMessages([error.response.data]);
-                    }
+                    setErrorMessages(error.message);
                 } finally {
                     resolve();
                 }
@@ -80,7 +76,7 @@ const TargetsTable = () => {
 
         //validation
         const errorList = [];
-        const { _id, selector } = newData;
+        const { id, selector } = newData;
         if (!selector) {
             errorList.push('Please enter a valid selector.');
         }
@@ -91,17 +87,13 @@ const TargetsTable = () => {
         } else {
             (async () => {
                 try {
-                    await editTarget(_id, selector);
+                    await editTarget(id, selector);
                     const dataUpdate = [...data];
                     const index = oldData.tableData.id;
                     dataUpdate[index] = newData;
                     setData([...dataUpdate]);
                 } catch (error) {
-                    if (!error.response) {
-                        setErrorMessages(['Server error. Please contact administrator.']);
-                    } else {
-                        setErrorMessages([error.response.data]);
-                    }
+                    setErrorMessages([error.message]);
                 } finally {
                     resolve();
                 }
@@ -113,17 +105,13 @@ const TargetsTable = () => {
         setErrorMessages([]);
 
         try {
-            await deleteTarget(oldData._id);
+            await deleteTarget(oldData.id);
             const dataDelete = [...data];
             const index = oldData.tableData.id;
             dataDelete.splice(index, 1);
             setData([...dataDelete]);
         } catch (error) {
-            if (!error.response) {
-                setErrorMessages(['Server error. Please contact administrator.']);
-            } else {
-                setErrorMessages([error.response.data]);
-            }
+            setErrorMessages([error.message]);
         } finally {
             resolve();
         }
@@ -140,17 +128,13 @@ const TargetsTable = () => {
 
             (async () => {
                 try {
-                    const response = await resetTargets();
-                    setData(response.data);
+                    const targets = await resetTargets();
+                    setData(targets);
                     alert(
                         'Data has been reset to defaults successfully! This reset functionality is here just for the testing purposes (in production it would be removed, in order to prevent unwanted data deletion by an user).'
                     );
                 } catch (error) {
-                    if (!error.response) {
-                        setErrorMessages(['Server error. Please contact administrator.']);
-                    } else {
-                        setErrorMessages([error.response.data]);
-                    }
+                    setErrorMessages([error.message]);
                 } finally {
                     setLoading(false);
                 }

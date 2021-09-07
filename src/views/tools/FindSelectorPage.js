@@ -6,8 +6,8 @@ import Alert from '@material-ui/lab/Alert';
 import SearchIcon from '@material-ui/icons/Search';
 import AssistantIcon from '@material-ui/icons/Assistant';
 
-import getSelector from '../../logic/getSelector';
-import GetRankingsComponent from './GetRankingsComponent';
+import getSelector from '../../services/findSelector';
+import ScanRankingsComponent from './ScanRankingsComponent';
 import explainer from '../../assets/images/explainer.jpg';
 
 const FindSelector = () => {
@@ -35,14 +35,10 @@ const FindSelector = () => {
 
         (async () => {
             try {
-                const res = await getSelector(url, textArray);
-                setSelector(res.data);
+                const foundSelector = await getSelector(url, textArray);
+                setSelector(foundSelector);
             } catch (error) {
-                if (!error.response) {
-                    setErrorMessage('Server error. Please contact administrator.');
-                } else {
-                    setErrorMessage(error.response.data);
-                }
+                setErrorMessage(error.message);
             } finally {
                 setLoading(false);
             }
@@ -106,7 +102,7 @@ const FindSelector = () => {
                             </Alert>
 
                             <h4>Get Rankings:</h4>
-                            <GetRankingsComponent url={url} selector={selector} />
+                            <ScanRankingsComponent url={url} selector={selector} />
                         </div>
                     )}
                 </Col>
