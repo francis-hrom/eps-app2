@@ -50,7 +50,7 @@ const ScanRankingsComponent = (props) => {
     return (
         <div className="GetRankings" data-testid="GetRankings">
             <p>
-                Provide url link to a website and selector targeting relevant items. It access the webpage, get the list of items and
+                Provide url link to a web page and selector targeting relevant items. It access the web page, get the list of items and
                 display the rankings list. It renders a full web page within a browser so the whole process might take a while.
             </p>
 

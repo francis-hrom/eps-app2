@@ -56,7 +56,7 @@ const FindSelector = () => {
             <Row>
                 <Col>
                     <p>
-                        Provide url link to a website and list of relevant items. It will search through the website and return the most
+                        Provide url link to a web page and list of relevant items. It will search through the web page and return the most
                         statistically relevant selector which can be then used for Scan Rankings.
                     </p>
 

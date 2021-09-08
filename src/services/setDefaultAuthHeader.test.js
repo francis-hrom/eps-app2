@@ -10,7 +10,7 @@ describe('setDefaultAuthHeader', () => {
         token,
         isLoggedIn: 'true',
         isInitialized: 'true',
-        user: '{"email":"ada@lovelace.test","password":"$2a$10$j95TM0xWVcey.EbLEm4KC.7FtfAqGUcr1SgsZLRlDkevV894UQ77G","id":"6127c1deb3fc813d6c55ce20"}',
+        user: '{"email":"ada@lovelace.test","id":"6127c1deb3fc813d6c55ce20"}',
         _persist: '{"version":-1,"rehydrated":true}'
     });
 
