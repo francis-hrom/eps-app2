@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Row, Col, Button, Alert } from 'react-bootstrap';
+import { CircularProgress } from '@material-ui/core';
 
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -8,9 +9,10 @@ import axios from 'axios';
 import useScriptRef from '../../../hooks/useScriptRef';
 import { API_SERVER } from './../../../config/constant';
 import { ACCOUNT_INITIALIZE } from './../../../store/actions';
-import setDefaultAuthHeader from '../../../services/setDefaultAuthHeader';
 
 const RestLogin = ({ className, ...rest }) => {
+    const [loading, setLoading] = useState(false);
+
     const dispatcher = useDispatch();
     const scriptedRef = useScriptRef();
 
@@ -28,6 +30,8 @@ const RestLogin = ({ className, ...rest }) => {
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
+                        setLoading(true);
+
                         axios
                             .post(API_SERVER + '/users/login', {
                                 password: values.password,
@@ -57,6 +61,8 @@ const RestLogin = ({ className, ...rest }) => {
                                 setStatus({ success: false });
                                 setErrors({ submit: error.response.data.msg });
                                 setSubmitting(false);
+
+                                setErrors({ submit: error.response.data });
                             });
                     } catch (err) {
                         console.error(err);
@@ -65,6 +71,8 @@ const RestLogin = ({ className, ...rest }) => {
                             setErrors({ submit: err.message });
                             setSubmitting(false);
                         }
+                    } finally {
+                        setLoading(false);
                     }
                 }}
             >
@@ -114,16 +122,19 @@ const RestLogin = ({ className, ...rest }) => {
 
                         <Row>
                             <Col mt={2}>
-                                <Button
-                                    className="btn-block"
-                                    color="primary"
-                                    disabled={isSubmitting}
-                                    size="large"
-                                    type="submit"
-                                    variant="primary"
-                                >
-                                    Sign IN
-                                </Button>
+                                {!loading && (
+                                    <Button
+                                        className="btn-block"
+                                        color="primary"
+                                        disabled={isSubmitting}
+                                        size="large"
+                                        type="submit"
+                                        variant="primary"
+                                    >
+                                        Sign IN
+                                    </Button>
+                                )}
+                                {loading && <CircularProgress />}
                             </Col>
                         </Row>
                     </form>
