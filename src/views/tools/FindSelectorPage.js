@@ -13,8 +13,8 @@ import explainer from '../../assets/images/explainer.jpg';
 const FindSelector = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
-    const [url, setUrl] = useState('');
-    const [textArea, setTextArea] = useState('');
+    const [url, setUrl] = useState('https://webscraper.io/test-sites/e-commerce/allinone/phones/touch');
+    const [textArea, setTextArea] = useState('Nokia 123\nLG Optimus\nSamsung Galaxy');
     const [selector, setSelector] = useState('');
 
     const validateForm = () => {
@@ -47,8 +47,8 @@ const FindSelector = () => {
     };
 
     const handleSetDefault = () => {
-        setUrl('https://webscraper.io/test-sites/e-commerce/allinone/phones/touch');
-        setTextArea('Nokia 123\nLG Optimus\nSamsung Galaxy');
+        setUrl('');
+        setTextArea('');
     };
 
     return (
@@ -82,7 +82,7 @@ const FindSelector = () => {
                                     Find Selector
                                 </Button>
                                 <Button variant="contained" onClick={handleSetDefault} startIcon={<AssistantIcon />}>
-                                    Set test data
+                                    Remove test data
                                 </Button>
                             </>
                         )}
@@ -97,7 +97,11 @@ const FindSelector = () => {
                                     <strong>
                                         Selector found! <br />
                                     </strong>
-                                    Url: <a href={url}>{url}</a> <br />
+                                    Url:{' '}
+                                    <a href={url} target="_blank" rel="noopener noreferrer">
+                                        {url}
+                                    </a>
+                                    <br />
                                     Selector: {selector}
                                 </p>
                             </Alert>

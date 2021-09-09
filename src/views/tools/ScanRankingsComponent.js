@@ -11,8 +11,8 @@ import scanRankings from '../../services/scanRankings';
 const ScanRankingsComponent = (props) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
-    const [url, setUrl] = useState(props.url || '');
-    const [selector, setSelector] = useState(props.selector || '');
+    const [url, setUrl] = useState(props.url || 'https://webscraper.io/test-sites/e-commerce/allinone/phones/touch');
+    const [selector, setSelector] = useState(props.selector || 'html>body>div>div>div>div>div>div>div>div>h4>a:nth-of-type(1)');
     const [items, setItems] = useState([]);
 
     const validateForm = () => {
@@ -43,8 +43,8 @@ const ScanRankingsComponent = (props) => {
     };
 
     const handleSetDefault = () => {
-        setUrl('https://webscraper.io/test-sites/e-commerce/allinone/phones/touch');
-        setSelector('html>body>div>div>div>div>div>div>div>div>h4>a:nth-of-type(1)');
+        setUrl('');
+        setSelector('');
     };
 
     return (
@@ -75,7 +75,7 @@ const ScanRankingsComponent = (props) => {
                             Scan Rankings
                         </Button>
                         <Button variant="contained" onClick={handleSetDefault} startIcon={<AssistantIcon />}>
-                            Set test data
+                            Remove test data
                         </Button>
                     </>
                 )}
@@ -86,7 +86,11 @@ const ScanRankingsComponent = (props) => {
             {items.length > 0 && (
                 <Alert severity="success">
                     <p>
-                        Url: <a href={url}>{url}</a> <br />
+                        Url:{' '}
+                        <a href={url} rel="noopener noreferrer">
+                            {url}
+                        </a>
+                        <br />
                         Rankings: <br />
                         <ol>
                             {items.map((el, i) => (
