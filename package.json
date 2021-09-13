@@ -48,7 +48,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "test-inspect-brk": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
+        "test-inspect-brk": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+        "deploy": "npm run build && mv build/index.html build/200.html && surge build --domain https://eps-app2.surge.sh && surge build --domain https://eps-app.surge.sh "
     },
     "eslintConfig": {
         "extends": [
