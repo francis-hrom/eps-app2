@@ -108,7 +108,7 @@ const ScanRankingsComponent = (props) => {
                 <Alert severity="success">
                     <p>
                         Url:{' '}
-                        <a href={url} rel="noopener noreferrer">
+                        <a href={url} target="_blank" rel="noopener noreferrer">
                             {url}
                         </a>
                         <br />
