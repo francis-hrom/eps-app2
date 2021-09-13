@@ -157,7 +157,7 @@ const routes = [
 
             {
                 exact: true,
-                path: '/tools/scan-rankings',
+                path: '/tools/verify-selector',
                 component: lazy(() => import('./views/tools/ScanRankingsPage'))
             },
             {

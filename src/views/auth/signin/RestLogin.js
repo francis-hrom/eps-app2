@@ -63,6 +63,9 @@ const RestLogin = ({ className, ...rest }) => {
                                 setSubmitting(false);
 
                                 setErrors({ submit: error.response.data });
+                            })
+                            .finally(() => {
+                                setLoading(false);
                             });
                     } catch (err) {
                         console.error(err);
@@ -71,8 +74,6 @@ const RestLogin = ({ className, ...rest }) => {
                             setErrors({ submit: err.message });
                             setSubmitting(false);
                         }
-                    } finally {
-                        setLoading(false);
                     }
                 }}
             >

@@ -51,11 +51,11 @@ const menuItems = {
                     icon: 'feather icon-search'
                 },
                 {
-                    id: 'scan-rankings',
-                    title: 'Scan Rankings',
+                    id: 'verify-selector',
+                    title: 'Verify Rankings',
                     type: 'item',
-                    url: '/tools/scan-rankings',
-                    icon: 'feather icon-crosshair'
+                    url: '/tools/verify-selector',
+                    icon: 'feather icon-help-circle'
                 }
             ]
         }

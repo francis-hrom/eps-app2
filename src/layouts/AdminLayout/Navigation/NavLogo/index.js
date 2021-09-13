@@ -17,14 +17,14 @@ const NavLogo = () => {
     return (
         <React.Fragment>
             <div className="navbar-brand header-logo">
-                <Link to="#" className="b-brand">
+                <Link to="/" className="b-brand">
                     <div className="b-bg">
                         <i className="feather icon-trending-up" />
                     </div>
                     <span className="b-title">EPS</span>
                 </Link>
                 <Link
-                    to="#"
+                    to="/"
                     className={toggleClass.join(' ')}
                     id="mobile-collapse"
                     onClick={() => dispatch({ type: actionType.COLLAPSE_MENU })}
