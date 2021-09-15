@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup, Dropdown, Media } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import axios from 'axios';
 
@@ -20,8 +20,11 @@ const NavRight = () => {
 
     const [listOpen, setListOpen] = useState(false);
 
+    const history = useHistory();
+
     const handleLogout = () => {
         localStorage.removeItem('user-account');
+        history.push('/auth/signin');
         window.location.reload();
 
         // axios

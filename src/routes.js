@@ -58,6 +58,18 @@ const routes = [
         component: lazy(() => import('./views/auth/signup/SignUp2'))
     },
     {
+        exact: true,
+        layout: AdminLayout,
+        path: '/main/home',
+        component: lazy(() => import('./views/main/HomePage'))
+    },
+    {
+        exact: true,
+        layout: AdminLayout,
+        path: '/',
+        component: () => <Redirect to={BASE_URL} />
+    },
+    {
         path: '*',
         layout: AdminLayout,
         guard: AuthGuard,
@@ -131,11 +143,6 @@ const routes = [
                 path: '/test-page',
                 component: lazy(() => import('./views/testPage/TestPage'))
             },
-            {
-                exact: true,
-                path: '/main/home',
-                component: lazy(() => import('./views/main/HomePage'))
-            },
 
             {
                 exact: true,
@@ -159,13 +166,13 @@ const routes = [
                 exact: true,
                 path: '/tools/verify-selector',
                 component: lazy(() => import('./views/tools/ScanRankingsPage'))
-            },
-            {
-                path: '*',
-                exact: true,
-                component: () => <Redirect to={BASE_URL} />
             }
         ]
+    },
+    {
+        path: '*',
+        exact: true,
+        component: () => <Redirect to={BASE_URL} />
     }
 ];
 
