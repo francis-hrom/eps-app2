@@ -74,7 +74,7 @@ const ScanRankingsComponent = (props) => {
                 Verify Selector tool helps user to verify functionality of a Selector (by using Scan Rankings tool in the background). User
                 provides url (web page) and selector targeting relevant items. Then EPS visits the web page, scans the order of items in the
                 web page and shows the rankings list. User can then visually inspect the results and save the Target (url, selector) to the
-                database (<Link to="/targets">Targets</Link>).
+                database (<Link to="/data/targets">Targets</Link>).
             </p>
 
             <Form>

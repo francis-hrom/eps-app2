@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import validUrl from 'valid-url';
-import { Form, Row, Col, Image } from 'react-bootstrap';
+import { Form, Row, Col, Image, Card } from 'react-bootstrap';
 import { Button, CircularProgress } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import SearchIcon from '@material-ui/icons/Search';
@@ -54,70 +54,76 @@ const FindSelector = () => {
 
     return (
         <div className="FindSelector" data-testid="FindSelector">
-            <Row>
-                <Col>
-                    <p>
-                        Find Selector tool helps users without technical knowledge of HTML/CSS to find relevant Selector. User enters url
-                        (target web page) and list of relevant items (text from the web page). Then EPS visits the web page, evaluates all
-                        possible options and return the most statistically relevant selector, which can be then verified via{' '}
-                        <Link to="/verify-selector">Verify Selector</Link> and saved to database (<Link to="/targets">Targets</Link>).
-                    </p>
+            <Card>
+                <Card.Body>
+                    <Row>
+                        <Col>
+                            <p>
+                                Find Selector tool helps users without technical knowledge of HTML/CSS to find relevant Selector. User
+                                enters url (target web page) and list of relevant items (text from the web page). Then EPS visits the web
+                                page, evaluates all possible options and return the most statistically relevant selector, which can be then
+                                verified via <Link to="/tools/verify-selector">Verify Selector</Link> and saved to database (
+                                <Link to="/data/targets">Targets</Link>
+                                ).
+                            </p>
 
-                    <Form>
-                        <Form.Group controlId="url">
-                            <Form.Label>Url</Form.Label>
-                            <Form.Control type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group controlId="items">
-                            <Form.Label>Relevant items </Form.Label>
-                            <Form.Control as="textarea" rows={3} value={textArea} onChange={(e) => setTextArea(e.target.value)} />
-                            <Form.Text className="text-muted">Separate by new line. Case insensitive.</Form.Text>
-                        </Form.Group>
-                        {!loading && (
-                            <>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    disabled={!validateForm()}
-                                    onClick={handleSubmit}
-                                    startIcon={<SearchIcon />}
-                                >
-                                    Find Selector
-                                </Button>
-                                <Button variant="contained" onClick={handleSetDefault} startIcon={<AssistantIcon />}>
-                                    Remove test data
-                                </Button>
-                            </>
-                        )}
-                    </Form>
-                    {loading && <CircularProgress />}
-                    {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+                            <Form>
+                                <Form.Group controlId="url">
+                                    <Form.Label>Url</Form.Label>
+                                    <Form.Control type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+                                </Form.Group>
+                                <Form.Group controlId="items">
+                                    <Form.Label>Relevant items </Form.Label>
+                                    <Form.Control as="textarea" rows={3} value={textArea} onChange={(e) => setTextArea(e.target.value)} />
+                                    <Form.Text className="text-muted">Separate by new line. Case insensitive.</Form.Text>
+                                </Form.Group>
+                                {!loading && (
+                                    <>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            disabled={!validateForm()}
+                                            onClick={handleSubmit}
+                                            startIcon={<SearchIcon />}
+                                        >
+                                            Find Selector
+                                        </Button>
+                                        <Button variant="contained" onClick={handleSetDefault} startIcon={<AssistantIcon />}>
+                                            Remove test data
+                                        </Button>
+                                    </>
+                                )}
+                            </Form>
+                            {loading && <CircularProgress />}
+                            {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
 
-                    {selector && (
-                        <div>
-                            <Alert severity="success">
-                                <p>
-                                    <strong>
-                                        Selector found! <br />
-                                    </strong>
-                                    Url:{' '}
-                                    <a href={url} target="_blank" rel="noopener noreferrer">
-                                        {url}
-                                    </a>
-                                    <br />
-                                    Selector: {selector}
-                                </p>
-                            </Alert>
+                            {selector && (
+                                <div>
+                                    <Alert severity="success">
+                                        <p>
+                                            <strong>
+                                                Selector found! <br />
+                                            </strong>
+                                            Url:{' '}
+                                            <a href={url} target="_blank" rel="noopener noreferrer">
+                                                {url}
+                                            </a>
+                                            <br />
+                                            Selector: {selector}
+                                        </p>
+                                    </Alert>
 
-                            <h4>Verify Selector</h4>
-                            <ScanRankingsComponent url={url} selector={selector} />
-                        </div>
-                    )}
-                </Col>
-                <Col lg={6}>
-                    <Image src={explainer} alt="explainer" fluid />
-                </Col>
-            </Row>
+                                    <h4>Verify Selector</h4>
+                                    <ScanRankingsComponent url={url} selector={selector} />
+                                </div>
+                            )}
+                        </Col>
+                        <Col lg={6}>
+                            <Image src={explainer} alt="explainer" fluid />
+                        </Col>
+                    </Row>
+                </Card.Body>
+            </Card>
         </div>
     );
 };

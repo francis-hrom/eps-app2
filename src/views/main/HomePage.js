@@ -18,26 +18,8 @@ const HomePage = () => {
                         </Card.Header>
                         <Card.Body>
                             <p>
-                                EPS (Element Position Scanner) is tool for businesses to efficiently monitor positions (rankings) of their
+                                EPS (Element Position Scanner) is a tool for businesses to efficiently monitor positions (rankings) of their
                                 products (and their competitors) on other websites.
-                            </p>
-                            <p>
-                                User provides <Link to="/targets">Targets</Link> - list of urls (web pages) and selectors (CSS) targeting
-                                the relevant items on those web pages. EPS then opens these web pages one by one in a virtual web browser,
-                                scans the positions (rankings) and saves them to database. Then the user (data analyst, marketer, sales
-                                person etc.) can view them or download them for further analysis from <Link to="/rankings">Rankings</Link>.
-                            </p>
-                            <p>
-                                Scannings of rankings can be setup according to the business needs (for example once per week, once per day
-                                or several times per day).
-                            </p>
-                            <p>
-                                Selector can be generated via <Link to="/find-selector">Find Selector</Link> tool, which helps users without
-                                technical knowledge of HTML/CSS to find relevant Selector. User enters url (target web page) and list of
-                                relevant items (text from the web page). Then EPS visits the web page, evaluates all possible options and
-                                return the most statistically relevant selector, which can be then verified via{' '}
-                                <Link to="/verify-selector">Verify Selector</Link> and saved to database (<Link to="/targets">Targets</Link>
-                                ).
                             </p>
                             <p> Example use case scenarios:</p>
                             <ul>
@@ -55,8 +37,28 @@ const HomePage = () => {
                                 </li>
                             </ul>
                             <p>
+                                User provides <Link to="/data/targets">Targets</Link> - list of urls (web pages) and selectors (CSS)
+                                targeting the relevant items on those web pages. EPS then opens these web pages one by one in a virtual web
+                                browser, scans the positions (rankings) and saves them to the database. Then the user (data analyst,
+                                marketer, sales person etc.) can view them or download them for further analysis from{' '}
+                                <Link to="/data/rankings">Rankings</Link>.
+                            </p>
+                            <p>
+                                Scannings of rankings can be set up according to the business needs (for example once per week, once per day
+                                or several times per day).
+                            </p>
+                            <p>
+                                Selector can be generated via <Link to="/tools/find-selector">Find Selector</Link> tool, which helps users
+                                without technical knowledge of HTML/CSS to find relevant Selector. User enters the url (target web page) and
+                                list of relevant items (text from the web page). Then EPS visits the web page, evaluates all possible
+                                options and returns the most statistically relevant selector, which can be then verified via{' '}
+                                <Link to="/tools/verify-selector">Verify Selector</Link> and saved to database (
+                                <Link to="/data/targets">Targets</Link>
+                                ).
+                            </p>
+                            <p>
                                 For illustration purposes data about smartphone popularity (rankings) are already preloaded from the major
-                                e-commerce web pages (targets). <Link to="/targets">Targets Table</Link> has unlocked all features
+                                e-commerce web pages (targets). <Link to="/data/targets">Targets Table</Link> has unlocked all features
                                 (add/edit/delete/export) and reset to default values.
                             </p>
                         </Card.Body>
