@@ -52,7 +52,7 @@ const menuItems = {
                 },
                 {
                     id: 'verify-selector',
-                    title: 'Verify Rankings',
+                    title: 'Verify Selector',
                     type: 'item',
                     url: '/tools/verify-selector',
                     icon: 'feather icon-help-circle'

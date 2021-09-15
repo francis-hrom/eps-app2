@@ -28,7 +28,7 @@ const HomePage = () => {
                                     is specification on what position (ranking) on the partners web page will be the company's
                                     product/service listed. To check manually 100+ partner web pages is highly inefficient and possibly
                                     error prone. With usage of EPS the sales team can retrieve this data easily and in addition get data
-                                    about position of product/services of their competitors.
+                                    about positions of products/services of their competitors.
                                 </li>
                                 <li>
                                     Marketing / brand ambassador team of a major smartphone brand which is in charge of brand awareness.
