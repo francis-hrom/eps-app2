@@ -65,9 +65,27 @@ const HomePage = () => {
                     </Card>
                 </Col>
                 <Col lg={6}>
-                    <Row>
-                        <Image src={explainer} alt="explainer" fluid />
-                    </Row>
+                    <Card>
+                        <Card.Body>
+                            <Row>
+                                <div className="embed-responsive embed-responsive-16by9">
+                                    <iframe
+                                        className="embed-responsive-item"
+                                        width="560"
+                                        height="315"
+                                        src="https://www.youtube.com/embed/L238jRLsGqI?rel=0"
+                                        title="EPS Explainer"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen="allowfullscreen"
+                                    ></iframe>
+                                </div>
+                            </Row>
+                            <Row>
+                                <Image src={explainer} alt="explainer" fluid />
+                            </Row>
+                        </Card.Body>
+                    </Card>
                     {/* <Row>
                         <Col>
                             <Card>
